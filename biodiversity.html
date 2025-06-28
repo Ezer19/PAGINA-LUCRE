@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Biodiversidad | Laguna de Huacarpay</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="css/styles.css" href="">
+</head>
+<body>
+
+  <!-- Preloader y header igual que en index.html -->
+  
+  <main class="biodiversity-page">
+    <section class="section hero-biodiversity">
+      <div class="container">
+        <h1 class="hero-title animate-on-scroll">Biodiversidad</h1>
+        <p class="hero-subtitle animate-on-scroll">Descubre la riqueza de especies que habitan en la Laguna de Huacarpay</p>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title animate-on-scroll">Especies Destacadas</h2>
+          <p class="section-subtitle animate-on-scroll">Más de 100 especies de aves, incluyendo residentes y migratorias</p>
+        </div>
+        
+        <div class="species-tabs animate-on-scroll">
+          <button class="tab-btn active" data-category="aves">Aves</button>
+          <button class="tab-btn" data-category="flora">Flora</button>
+          <button class="tab-btn" data-category="fauna">Fauna Acuática</button>
+        </div>
+        
+        <div class="species-container">
+          <!-- Contenido dinámico se cargará aquí -->
+        </div>
+      </div>
+    </section>
+    
+    <section class="section conservation-section">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Conservación</h2>
+        <div class="conservation-content">
+          <div class="conservation-text animate-on-scroll">
+            <h3>Protegiendo nuestro patrimonio natural</h3>
+            <p>La Laguna de Huacarpay es un humedal reconocido por la Convención Ramsar desde 2006, lo que destaca su importancia internacional como hábitat de aves acuáticas.</p>
+            <p>El área está protegida por la Municipalidad Provincial del Cusco y varias organizaciones ambientales que trabajan en su conservación.</p>
+            <a href="about.html#conservacion" class="btn page-transition-link">Conoce más</a>
+          </div>
+          <div class="conservation-image animate-on-scroll">
+            <img src="images/conservacion.jpg" alt="Esfuerzos de conservación">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer igual que en index.html -->
+  
+  <script src="scripts.js"></script>
+  <script>
+    // Cargar especies según categoría
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Cambiar pestaña activa
+          tabBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Cargar contenido
+          loadSpecies(this.dataset.category);
+        });
+      });
+      
+      // Cargar aves por defecto
+      loadSpecies('aves');
+    });
+    
+    function loadSpecies(category) {
+      const container = document.querySelector('.species-container');
+      container.innerHTML = '<div class="loading-species"><i class="fas fa-spinner fa-spin"></i> Cargando especies...</div>';
+      
+      // Simular carga de datos (en un proyecto real sería una petición AJAX)
+      setTimeout(() => {
+        let content = '';
+        
+        if (category === 'aves') {
+          content = `
+            <div class="species-grid">
+              <div class="species-card">
+                <img src="images/ave1.jpg" alt="Pato Colorado">
+                <h3>Pato Colorado</h3>
+                <p>Netta erythrophthalma</p>
+                <a href="especie-pato-colorado.html" class="page-transition-link">Ver detalles</a>
+              </div>
+              <!-- Más aves -->
+            </div>
+          `;
+        } else if (category === 'flora') {
+          content = `
+            <div class="species-grid">
+              <div class="species-card">
+                <img src="images/flora1.jpg" alt="Totora">
+                <h3>Totora</h3>
+                <p>Schoenoplectus californicus</p>
+                <a href="especie-totora.html" class="page-transition-link">Ver detalles</a>
+              </div>
+              <!-- Más flora -->
+            </div>
+          `;
+        }
+        
+        container.innerHTML = content;
+      }, 800);
+    }
+  </script>
+</body>
+</html>

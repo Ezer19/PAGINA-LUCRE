@@ -1,0 +1,16 @@
+PAGINA-LUCRE/
+├── index.html
+├── about.html           (La Laguna)
+├── biodiversity.html   (Biodiversidad)
+├── gallery.html        (Galería)
+├── visit.html          (Visítanos)
+├── contact.html        (Contacto)
+├── css/
+│   └── styles.css
+├── js/
+│   └── scripts.js
+├── images/
+│   ├── logo-cusco.png
+│   ├── hero-huacarpay.jpg
+│   ├── ... (otras imágenes)
+└── README.md
