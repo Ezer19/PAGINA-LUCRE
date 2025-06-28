@@ -1,8 +1,6 @@
-// Preloader
 window.addEventListener('load', function() {
     const preloader = document.getElementById('preloader');
     
-    // Mostrar contenido cuando todo esté cargado
     setTimeout(() => {
       preloader.classList.add('fade-out');
       
@@ -10,13 +8,11 @@ window.addEventListener('load', function() {
         document.getElementById('header').classList.add('visible');
         preloader.style.display = 'none';
         
-        // Iniciar animaciones después del preloader
         initAnimations();
       }, 1000);
     }, 1500);
   });
   
-  // Navegación móvil
   function initMobileMenu() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navMenu = document.getElementById('navMenu');
@@ -27,7 +23,6 @@ window.addEventListener('load', function() {
         '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
     });
     
-    // Cerrar menú al hacer clic en un enlace
     document.querySelectorAll('.nav-menu a').forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('active');
@@ -36,7 +31,6 @@ window.addEventListener('load', function() {
     });
   }
   
-  // Transiciones entre páginas
   function initPageTransitions() {
     document.querySelectorAll('.page-transition-link').forEach(link => {
       link.addEventListener('click', function(e) {
@@ -53,7 +47,6 @@ window.addEventListener('load', function() {
     });
   }
   
-  // Scroll suave
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
@@ -73,7 +66,6 @@ window.addEventListener('load', function() {
     });
   }
   
-  // Animaciones al hacer scroll
   function initAnimations() {
     const animateElements = document.querySelectorAll('.animate-on-scroll');
     
@@ -93,7 +85,6 @@ window.addEventListener('load', function() {
     });
   }
   
-  // Chatbot mejorado para móviles
   function initChatbot() {
     const chatbotBtn = document.getElementById('chatbotBtn');
     const chatbotWindow = document.getElementById('chatbotWindow');
@@ -102,17 +93,14 @@ window.addEventListener('load', function() {
     const chatbotInput = document.getElementById('chatbotInput');
     const chatbotSend = document.getElementById('chatbotSend');
     
-    // Toggle chatbot
     chatbotBtn.addEventListener('click', () => {
       chatbotWindow.classList.toggle('active');
     });
     
-    // Cerrar chatbot
     chatbotClose.addEventListener('click', () => {
       chatbotWindow.classList.remove('active');
     });
     
-    // Respuestas del chatbot
     const chatbotResponses = {
       "hola": "¡Hola! ¿En qué puedo ayudarte sobre la Laguna de Huacarpay?",
       "horario": "La laguna está abierta al público de 6:00 AM a 6:00 PM todos los días.",
@@ -126,7 +114,6 @@ window.addEventListener('load', function() {
       "adios": "¡Hasta luego! Que tengas un buen día. Recuerda cuidar la naturaleza."
     };
     
-    // Enviar mensaje
     function sendMessage() {
       const message = chatbotInput.value.trim();
       if (message === '') return;
@@ -137,7 +124,6 @@ window.addEventListener('load', function() {
       setTimeout(() => {
         let response = "Lo siento, no entendí tu pregunta. ¿Podrías reformularla?";
         
-        // Buscar respuesta
         Object.keys(chatbotResponses).forEach(key => {
           if (message.toLowerCase().includes(key)) {
             response = chatbotResponses[key];
@@ -148,7 +134,6 @@ window.addEventListener('load', function() {
       }, 1000);
     }
     
-    // Añadir mensaje al chat
     function addMessage(text, sender) {
       const messageDiv = document.createElement('div');
       messageDiv.classList.add('message');
@@ -158,7 +143,6 @@ window.addEventListener('load', function() {
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
     
-    // Event listeners
     chatbotSend.addEventListener('click', sendMessage);
     chatbotInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
@@ -167,14 +151,13 @@ window.addEventListener('load', function() {
     });
   }
   
-  // Google Maps
   function initMap() {
     try {
       const huacarpay = { lat: -13.615278, lng: -71.7275 };
       const mapContainer = document.getElementById('map');
       
       if (mapContainer) {
-        // Eliminar loader si existe
+        
         if (mapContainer.querySelector('.loading')) {
           mapContainer.querySelector('.loading').remove();
         }
@@ -184,10 +167,9 @@ window.addEventListener('load', function() {
           center: huacarpay,
           gestureHandling: "cooperative",
           mapTypeControl: false,
-          styles: [/* estilos del mapa */]
+          styles: []
         });
         
-        // Marcador
         const marker = new google.maps.Marker({
           position: huacarpay,
           map: map,
@@ -197,7 +179,6 @@ window.addEventListener('load', function() {
           }
         });
         
-        // Ventana de información
         const infoWindow = new google.maps.InfoWindow({
           content: `
             <div style="padding: 10px; max-width: 250px;">
@@ -225,7 +206,6 @@ window.addEventListener('load', function() {
     }
   }
   
-  // Mostrar error si falla el mapa
   function showMapError() {
     const mapContainer = document.getElementById('map');
     if (mapContainer) {
@@ -242,14 +222,12 @@ window.addEventListener('load', function() {
     }
   }
   
-  // Inicialización cuando el DOM esté listo
   document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
     initPageTransitions();
     initSmoothScroll();
     initChatbot();
     
-    // Header scroll effect
     const header = document.getElementById('header');
     if (header) {
       window.addEventListener('scroll', () => {
@@ -261,7 +239,6 @@ window.addEventListener('load', function() {
       });
     }
     
-    // Botón "volver arriba"
     const backToTopBtn = document.querySelector('.back-to-top');
     if (backToTopBtn) {
       window.addEventListener('scroll', () => {
@@ -280,21 +257,17 @@ window.addEventListener('load', function() {
       });
     }
     
-    // Manejar error de autenticación de Google Maps
     window.gm_authFailure = function() {
       showMapError();
     };
   });
   
-  // Optimización para móviles
   function checkMobileFeatures() {
-    // Detectar touch
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     
     if (isTouchDevice) {
       document.body.classList.add('touch-device');
-      
-      // Mejorar feedback táctil
+
       const buttons = document.querySelectorAll('button, a[href], .card-btn, .hero-btn');
       
       buttons.forEach(button => {
@@ -308,8 +281,7 @@ window.addEventListener('load', function() {
           }, 200);
         });
       });
-      
-      // Manejar video en móviles
+
       const heroVideo = document.querySelector('.hero-video');
       if (heroVideo) {
         heroVideo.muted = true;
@@ -345,11 +317,9 @@ window.addEventListener('load', function() {
     }
   }
   
-  // Ejecutar cuando todo esté cargado
   window.addEventListener('load', function() {
     checkMobileFeatures();
-    
-    // Manejar cambio de orientación en móviles
+
     window.addEventListener('orientationchange', function() {
       setTimeout(() => {
         window.location.reload();

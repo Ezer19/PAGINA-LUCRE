@@ -10,8 +10,6 @@
   <link rel="css/styles.css" href="">
 </head>
 <body>
-
-  <!-- Preloader y header igual que en index.html -->
   
   <main class="biodiversity-page">
     <section class="section hero-biodiversity">
@@ -35,7 +33,6 @@
         </div>
         
         <div class="species-container">
-          <!-- Contenido dinámico se cargará aquí -->
         </div>
       </div>
     </section>
@@ -58,26 +55,20 @@
     </section>
   </main>
   
-  <!-- Footer igual que en index.html -->
-  
   <script src="scripts.js"></script>
   <script>
-    // Cargar especies según categoría
     document.addEventListener('DOMContentLoaded', function() {
       const tabBtns = document.querySelectorAll('.tab-btn');
       
       tabBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-          // Cambiar pestaña activa
           tabBtns.forEach(b => b.classList.remove('active'));
           this.classList.add('active');
-          
-          // Cargar contenido
+
           loadSpecies(this.dataset.category);
         });
       });
       
-      // Cargar aves por defecto
       loadSpecies('aves');
     });
     
@@ -85,7 +76,6 @@
       const container = document.querySelector('.species-container');
       container.innerHTML = '<div class="loading-species"><i class="fas fa-spinner fa-spin"></i> Cargando especies...</div>';
       
-      // Simular carga de datos (en un proyecto real sería una petición AJAX)
       setTimeout(() => {
         let content = '';
         
